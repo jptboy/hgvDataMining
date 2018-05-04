@@ -12,7 +12,7 @@ This script aims to read time series data and identify missing date/time
 import pandas as pd
 import numpy as np
 import os
-
+from sklearn.externals import joblib
 
 # list the files in the data directory
 data_dir = 'data/F1/minuteData/2017'
@@ -95,4 +95,5 @@ else:
     fullDF = df    
 # outout a big csv file
 fullDF.to_csv(outputPath+outputName,encoding='utf-8')
-##    
+## output a pickle file
+joblib.dump(fullDF,'2017-raw.pkl')    
