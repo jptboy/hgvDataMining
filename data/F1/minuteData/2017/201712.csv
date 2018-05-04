@@ -4,7 +4,7 @@ Column name is Energy Monitor Channel Number-Circuit Name,,,,,,,,,,,,,,,,,,,,,,,
 Channel Columns contain average power usage(production) in watts for minute,,,,,,,,,,,,,,,,,,,,,,,,
 Voltage is average voltage for minute,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,
- Date/Time,CH1-Bldg F1,CH3-PV Array F1,CH4-Plug: Front FridgeT,CH5-A/C: WSHP1,CH6-Range,CH8-Plug: Microwave,CH9-Wired: Dishwasher,CH10-Plug: Mixer,CH11-Plug: Fridge in Back,CH12-Plug: Front Display Case,CH13-Plug: Back Middle Freezer,CH14-Plug: Back Freezer near Wall,CH15-Lights: Indoor 1,CH16-DHW Gas Instant,CH17-Plug: Gas Oven,CH18-Plugs: Outlet 1,CH19-Plugs: Outlet 2,CH20-Plugs: Outlet 3,CH21-Plug: Front Small Fridge,CH22-Lights: Bath/Mechanical Room,CH23-Plug: Outdoor Receptacle,CH24-Lights: Outdoor 4,4065/Voltage,Outdoor Temp
+ Date/Time,CH1-Bldg F1,CH3-Solar Input (F1),CH4-No CT,CH5-WSHP,CH6-Range,CH8-Microwave,CH9-Dishwasher,CH10-Mixer,CH11-Fridge in Back,CH12-Front Display Case,CH13-Back Middle Freezer,CH14-Back Freezer near Wall,CH15-Lighting{1},CH16-Gas Water Heater,CH17-Gas Convection Oven,CH18-Receptacle 1,CH19-Receptacle 2,CH20-Receptacle 3,CH21-Front Small Fridge,CH22-Bath/Mechanical Room,CH23-Outdoor Receptacle,CH24-Lighting Outdoor,4065/Voltage,Outdoor Temp
 12/1/2017 0:00,3234,0,22,0,0,0,0,0,111,442,1555,1024,34,0,0,0,0,79,0,192,0,0,120,
 12/1/2017 0:01,3646,0,22,0,0,0,0,0,45,961,1560,1021,34,0,0,0,0,79,0,192,0,0,120,
 12/1/2017 0:02,5562,0,22,0,0,0,0,0,844,959,1545,1017,34,0,0,0,0,80,0,1275,0,0,120,
