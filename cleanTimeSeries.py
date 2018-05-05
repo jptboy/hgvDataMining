@@ -91,7 +91,7 @@ def checkMissMinuteData(data_dir,outputPath,outputName,skiprows,index_col,parse_
     ## read tslib time stamp from data frame
     dt1 = df.index[0]
     dt2 = df.index[-1]
-    # total days in the datetime periods
+    # total days in the datetime periods. This requires that the first item in csv file should be the first minute of the first day in each month
     days = dt2.dayofyear - dt1.dayofyear + 1
     
     ## duplicate rows full of nan
