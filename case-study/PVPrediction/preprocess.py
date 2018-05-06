@@ -12,6 +12,7 @@ Usage: this script is used to generate training and testing data for ANN model. 
 from sklearn.externals import joblib
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
 
 workDir ='/Users/yangyangfu/github/hgvDataMining/'
 
@@ -45,11 +46,22 @@ xy = pd.concat([solarDF,pvGenDF],axis=1)
 
 
 # plot the negative generation with solar data for a day
-startPlot=pd.Timestamp(neg[1814].date())
-endPlot=startPlot+pd.DateOffset(days=1)
-minuteRange = pd.date_range(startPlot,endPlot,freq='1min')
-xyPlot = xy.loc[minuteRange]
-xyPlot[['IrrGlobal (W/m2)','IrrDiffuse (W/m2)','IrrDirect (W/m2)','CH3-Solar Input (F1)']].plot()
+#preDay = pd.Timestamp('2017-01-01')
+#for i in neg:
+#    day = i.date()
+#    if day!=preDay: 
+#        startPlot=pd.Timestamp(day)
+#        endPlot=startPlot+pd.DateOffset(days=1)
+#        minuteRange = pd.date_range(startPlot,endPlot,freq='1min')
+#        xyPlot = xy.loc[minuteRange]
+#        xyPlot[['IrrGlobal (W/m2)','IrrDiffuse (W/m2)','IrrDirect (W/m2)','CH3-Solar Input (F1)']].plot()
+#        plt.savefig(str(day)+'.png')
 
+# Need consider daylight saving time in different data recorder system. For example, 
+# in SiteSage (power system), the power is recorded using daylight saving time. 
+# But in Razon (solar data), they use normal local time. Therefore, in summer, 
+# the power is always one hour ahead of solar data starting the daylight saving time.
+# To fix the time zone gap, we need move the power in pvGenDF one hour backward during 
+# daylight saving time (3/12/2017 2:00 AM to 11/5/2017 1:00 AM)
 
 # slice dataframe to get training data and testing data
