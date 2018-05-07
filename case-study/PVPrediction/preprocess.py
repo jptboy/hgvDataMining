@@ -14,7 +14,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-workDir ='/Users/yangyangfu/github/hgvDataMining/'
+workDir ='C:/github/hgvDataMining/'
 
 
 os.chdir(workDir)
@@ -33,17 +33,27 @@ pvFilePath = workDir + 'data/F1/minuteData/2017/'
 pvFileName = '2017.csv'
 pvGenDF = -pd.read_csv(pvFilePath+pvFileName, skiprows=0, index_col=[0],parse_dates=True,skipinitialspace=True,usecols=[0,2])
 
+### ------------------------------------------------------------------------------------
+# Need consider daylight saving time in different data recorder system. For example, 
+# in SiteSage (power system), the power is recorded using daylight saving time. 
+# But in Razon (solar data), they use normal local time. Therefore, in summer, 
+# the power is always one hour ahead of solar data starting the daylight saving time.
+# To fix the time zone gap, we need move the power in pvGenDF one hour backward during 
+# daylight saving time (3/12/2017 2:00 AM to 11/5/2017 1:00 AM)
+""" Shift data according to time zone information is done mannually in csv file """
+### -------------- ------------------------------------------------------------------
 
 # better to plot the figure
 pvGenDF.plot()
+        
+# recover negative value by using its absolute value
+pvGenDFRec = pvGenDF.abs()
+
+# # combine x and y
+xy = pd.concat([solarDF,pvGenDFRec],axis=1)
 
 # find the negative generation
 neg = pvGenDF.index[pvGenDF[pvGenDF.columns[0]]<0].tolist()
-
-
-# combine x and y
-xy = pd.concat([solarDF,pvGenDF],axis=1)
-
 
 # plot the negative generation with solar data for a day
 #preDay = pd.Timestamp('2017-01-01')
@@ -57,11 +67,19 @@ xy = pd.concat([solarDF,pvGenDF],axis=1)
 #        xyPlot[['IrrGlobal (W/m2)','IrrDiffuse (W/m2)','IrrDirect (W/m2)','CH3-Solar Input (F1)']].plot()
 #        plt.savefig(str(day)+'.png')
 
-# Need consider daylight saving time in different data recorder system. For example, 
-# in SiteSage (power system), the power is recorded using daylight saving time. 
-# But in Razon (solar data), they use normal local time. Therefore, in summer, 
-# the power is always one hour ahead of solar data starting the daylight saving time.
-# To fix the time zone gap, we need move the power in pvGenDF one hour backward during 
-# daylight saving time (3/12/2017 2:00 AM to 11/5/2017 1:00 AM)
 
-# slice dataframe to get training data and testing data
+
+      
+###         Training and Testing data
+# use data from June and July
+#
+trainPeriodStart = pd.Timestamp('2017-06-01')
+trainPeriodEnd = pd.Timestamp('2017-07-01')
+June = xy.loc[trainPeriodStart:trainPeriodEnd][:-1] # slice the data frame by date range and drop the laste row
+
+testPeriodStart = pd.Timestamp('2017-07-01')
+testPeriodEnd = pd.Timestamp('2017-08-01')
+July = xy.loc[testPeriodStart:testPeriodEnd][:-1] # slice the data frame by date range and drop the laste row
+
+joblib.dump(June,'Train-June.pkl')
+joblib.dump(July,'Test-July.pkl')

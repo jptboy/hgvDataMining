@@ -6,8 +6,8 @@ Created on Fri May 04 14:21:03 2018
 """
 import os
 
-workDir ='C:\\Github\\hgvDataMining\\'
-data_dir = workDir+'data\\solar\\minuteData\\2017\\'
+workDir ='C:/Github/hgvDataMining/'
+data_dir = workDir+'case-study/PVPrediction/'
 
 os.chdir(workDir)
 

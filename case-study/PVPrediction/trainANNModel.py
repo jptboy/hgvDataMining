@@ -13,6 +13,15 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.externals import joblib
 from sklearn.pipeline import Pipeline
+import os
+
+# define the path
+workDir ='C:/Github/hgvDataMining/'
+data_dir = workDir+'case-study/PVPrediction/'
+
+os.chdir(workDir)
+
+# read traingn and testing data from pkl file
 
 rng = np.random.RandomState(0)
 
