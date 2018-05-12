@@ -81,5 +81,9 @@ testPeriodStart = pd.Timestamp('2017-07-01')
 testPeriodEnd = pd.Timestamp('2017-08-01')
 July = xy.loc[testPeriodStart:testPeriodEnd][:-1] # slice the data frame by date range and drop the laste row
 
+# drop NAN
+June = June.dropna(axis=0,how='any')
+July = July.dropna(axis=0,how='any')
+
 joblib.dump(June,'Train-June.pkl')
 joblib.dump(July,'Test-July.pkl')
